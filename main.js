@@ -41,13 +41,38 @@ function addStar() {
 
 Array(420).fill().forEach(addStar);
 
-const spaceTexture = new THREE.TextureLoader().load(
-  "./assets/background.ff8ad045.png"
-);
+const spaceTexture = new THREE.TextureLoader().load("./assets/background.ff8ad045.png");
 scene.background = spaceTexture;
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+window.addEventListener("resize", onWindowResize);
+
+const earthTexture = new THREE.TextureLoader().load("./assets/EarthHd.5cf740c7.jpeg");
+
+const earth = new THREE.Mesh(
+  new THREE.SphereGeometry(3, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: earthTexture,
+  })
+);
+
+scene.add(earth);
+
+earth.position.z = 0;
+earth.position.setX(2);
 
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
+
+  // if (t < -200) {
+  //   const rotationSpeed = 0.05;
+  //   earth.rotation.y += rotationSpeed;
+  // }
 
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;
@@ -57,10 +82,27 @@ function moveCamera() {
 document.body.onscroll = moveCamera;
 moveCamera();
 
+let earthRotationSpeed = 0.005;
 function animate() {
   requestAnimationFrame(animate);
+  earth.rotation.y += earthRotationSpeed;
 
   renderer.render(scene, camera);
 }
 
 animate();
+
+const textArray = [
+  "“If there is no struggle, there is no progress.” - Frederick Douglass",
+  "“It is never too late to be who you might have been.” - George Eliot",
+  "“With self-discipline most anything is possible.” - Theodore Roosevelt",
+  "“The only constant in life is change.” -Heraclitus",
+];
+
+const textElement = document.querySelector(".quote");
+let currentTextIndex = 0;
+
+setInterval(() => {
+  currentTextIndex = (currentTextIndex + 1) % textArray.length;
+  textElement.textContent = textArray[currentTextIndex];
+}, 5000);

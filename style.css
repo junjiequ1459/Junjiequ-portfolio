@@ -30,13 +30,10 @@ section {
 }
 
 .quote {
+  min-height: 220px;
   margin: 0;
   padding: 0;
-}
-
-.quote p {
-  color: white;
-  font-size: 50px;
+  font-style: italic;
 }
 
 .image-container {
@@ -46,6 +43,11 @@ section {
   min-height: 225px;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+.image-container:hover {
+  box-shadow: 0 0 20px #ffa500;
 }
 
 .image-container img {
@@ -66,8 +68,75 @@ section {
   font-size: 32px;
   color: white;
   margin-right: 10px;
+  transition: all 0.3s ease;
+}
+.fa-brands:hover {
+  animation: rainbow 5s infinite;
+  font-size: 50px;
 }
 
 .image-bug {
   display: none;
+}
+
+@keyframes rainbow {
+  0% {
+    color: red;
+  }
+  16.67% {
+    color: orange;
+  }
+  33.33% {
+    color: yellow;
+  }
+  50% {
+    color: green;
+  }
+  66.67% {
+    color: blue;
+  }
+  83.33% {
+    color: indigo;
+  }
+  100% {
+    color: violet;
+  }
+}
+
+.quote {
+  font-size: 50px;
+  animation: quote 5s infinite;
+}
+
+@keyframes quote {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.contact {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contact-inner-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .contact {
+    justify-content: center;
+  }
+}
+
+* {
+  font-family: "Open Sans", sans-serif;
 }
