@@ -67,3 +67,7 @@ section {
   color: white;
   margin-right: 10px;
 }
+
+.image-bug {
+  display: none;
+}
