@@ -41,7 +41,9 @@ function addStar() {
 
 Array(420).fill().forEach(addStar);
 
-const spaceTexture = new THREE.TextureLoader().load("./assets/background.ff8ad045.png");
+const spaceTexture = new THREE.TextureLoader().load(
+  "./assets/background.ff8ad045.png"
+);
 scene.background = spaceTexture;
 
 function onWindowResize() {
@@ -52,7 +54,9 @@ function onWindowResize() {
 
 window.addEventListener("resize", onWindowResize);
 
-const earthTexture = new THREE.TextureLoader().load("./assets/EarthHd.5cf740c7.jpeg");
+const earthTexture = new THREE.TextureLoader().load(
+  "./assets/EarthHd.ce55834c.jpeg"
+);
 
 const earth = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
